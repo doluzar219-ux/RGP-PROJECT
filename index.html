@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- ——— mobile-first rendering ——— -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#e9dcc0" />
+    <meta name="color-scheme" content="light" />
+
+    <!-- ——— identity ——— -->
+    <title>Life RPG — The Everyday Quest Log</title>
+    <meta
+      name="description"
+      content="A handwritten scrapbook that turns ordinary days into a gentle adventure. Pin real-life quests to a cork board, earn XP, level up your attributes, and keep the streak alive."
+    />
+    <meta name="author" content="Life RPG Contributors" />
+    <link rel="canonical" href="https://github.com/your-username/life-rpg" />
+
+    <!-- ——— social cards ——— -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Life RPG" />
+    <meta property="og:title" content="Life RPG — The Everyday Quest Log" />
+    <meta
+      property="og:description"
+      content="Pin real-life quests to a cork board, earn XP, and level up the person doing them. Local-first, no accounts, no cloud."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Life RPG — The Everyday Quest Log" />
+    <meta
+      name="twitter:description"
+      content="Pin real-life quests to a cork board, earn XP, and level up the person doing them."
+    />
+
+    <!-- ——— hand-drawn scrapbook typography ———
+         Caveat            → handwritten headings & numbers
+         Patrick Hand      → casual printed labels
+         Permanent Marker  → titles, ranks, rubber stamps
+         Lora              → cosy serif for quest notes
+         Plus Jakarta Sans → legible rounded UI text
+         preconnect + display=swap so text paints immediately -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Patrick+Hand&family=Permanent+Marker&family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- ——— favicon: a little paper tent card ——— -->
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%23efe3c7'/%3E%3Cpath d='M22 74 L50 20 L78 74 Z' fill='none' stroke='%232b2622' stroke-width='7' stroke-linejoin='round'/%3E%3Ccircle cx='50' cy='56' r='7' fill='%23c9773f'/%3E%3C/svg%3E"
+    />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+  <body>
+    <!-- Vite mounts the React app here. See src/main.tsx -->
+    <div id="root"></div>
+    <noscript>
+      Life RPG needs JavaScript to run — it is a React single-page app and your
+      quest log lives entirely in this browser.
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

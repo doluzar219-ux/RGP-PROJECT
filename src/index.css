@@ -1,0 +1,388 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+ *  THE EVERYDAY QUEST LOG — theme tokens
+ *  A handwritten scrapbook: parchment, cork, ink & washi tape.
+ * ------------------------------------------------------------------ */
+@theme {
+  --font-hand: "Caveat", "Bradley Hand", cursive;
+  --font-marker: "Permanent Marker", "Caveat", cursive;
+  --font-print: "Patrick Hand", "Comic Sans MS", cursive;
+  --font-serif: "Lora", "Iowan Old Style", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", ui-rounded, "Segoe UI", system-ui, sans-serif;
+
+  --color-ink: #2f2822;
+  --color-ink-soft: #6a5d4e;
+  --color-ink-faint: #a2917c;
+
+  --color-paper: #f3e7cf;
+  --color-paper-deep: #e6d6b6;
+  --color-card: #fffcf2;
+  --color-card-shade: #f6eeda;
+
+  --color-cork: #c49a62;
+  --color-cork-deep: #a97c47;
+
+  --color-rose: #dd8b95;
+  --color-sage: #8fae86;
+  --color-marigold: #e0a63c;
+  --color-sky: #85aecb;
+  --color-lilac: #b39cd0;
+  --color-clay: #cf7a4e;
+  --color-wine: #9c3d43;
+
+  --shadow-paper: 2px 3px 0 rgba(47, 40, 34, 0.16), 0 8px 18px -8px rgba(47, 40, 34, 0.45);
+  --shadow-lift: 4px 7px 0 rgba(47, 40, 34, 0.14), 0 18px 30px -14px rgba(47, 40, 34, 0.5);
+}
+
+/* ------------------------------------------------------------------ *
+ *  Base
+ * ------------------------------------------------------------------ */
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--color-ink);
+    background-color: #e9dcc0;
+    /* `clip` (not `hidden`) — it stops sideways overflow without creating a
+       scroll container, which would otherwise break the sticky sidebar. */
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: #f4d58d;
+    color: var(--color-ink);
+  }
+
+  /* keyboard focus that matches the ink aesthetic */
+  :focus-visible {
+    outline: 2.5px dashed var(--color-ink);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font-family: inherit;
+  }
+
+  /* cozy scrollbars */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #b8996a transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: #b8996a;
+    border-radius: 99px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ *  Textures
+ * ------------------------------------------------------------------ */
+@layer components {
+  /* fine paper grain — sits on top of anything via pseudo element */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.42;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    background-size: 220px 220px;
+    border-radius: inherit;
+  }
+
+  /* crumpled parchment desk */
+  .desk {
+    background-color: #e9dcc0;
+    background-image:
+      radial-gradient(circle at 18% 12%, rgba(255, 253, 240, 0.9) 0%, transparent 42%),
+      radial-gradient(circle at 82% 8%, rgba(255, 250, 230, 0.7) 0%, transparent 38%),
+      radial-gradient(circle at 70% 88%, rgba(186, 154, 108, 0.45) 0%, transparent 45%),
+      radial-gradient(circle at 8% 78%, rgba(196, 168, 120, 0.4) 0%, transparent 40%),
+      repeating-linear-gradient(118deg, rgba(255, 255, 255, 0.22) 0 2px, transparent 2px 7px),
+      repeating-linear-gradient(24deg, rgba(140, 112, 70, 0.08) 0 3px, transparent 3px 9px);
+  }
+
+  /* cork pin board for the quest area */
+  .cork-board {
+    background-color: #c9a06c;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(120, 82, 40, 0.5) 0 2px, transparent 3px),
+      radial-gradient(circle at 70% 12%, rgba(90, 60, 28, 0.45) 0 1.5px, transparent 3px),
+      radial-gradient(circle at 45% 72%, rgba(140, 96, 48, 0.5) 0 2.5px, transparent 4px),
+      radial-gradient(circle at 88% 60%, rgba(105, 70, 32, 0.4) 0 2px, transparent 3px),
+      radial-gradient(circle at 12% 85%, rgba(150, 104, 52, 0.45) 0 1.8px, transparent 3px),
+      radial-gradient(ellipse at 50% 0%, rgba(255, 236, 205, 0.5), transparent 65%),
+      linear-gradient(160deg, #cfa670, #b9884f);
+    background-size:
+      38px 38px,
+      53px 53px,
+      67px 67px,
+      41px 41px,
+      59px 59px,
+      100% 100%,
+      100% 100%;
+  }
+
+  /* notebook ruling */
+  .ruled {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0 27px,
+      rgba(133, 174, 203, 0.38) 27px 28px
+    );
+  }
+
+  .grid-paper {
+    background-image:
+      repeating-linear-gradient(to bottom, transparent 0 22px, rgba(133, 174, 203, 0.25) 22px 23px),
+      repeating-linear-gradient(to right, transparent 0 22px, rgba(133, 174, 203, 0.25) 22px 23px);
+  }
+
+  /* ------------------------------------------------------------ *
+   *  Paper surfaces
+   * ------------------------------------------------------------ */
+  .paper-card {
+    position: relative;
+    background-color: var(--card-bg, #fffcf2);
+    box-shadow: var(--shadow-paper);
+  }
+
+  /* hand-drawn wobbly border radius */
+  .wobble {
+    border-radius: 225px 15px 245px 15px / 15px 235px 15px 225px;
+  }
+  .wobble-2 {
+    border-radius: 14px 180px 12px 200px / 190px 14px 175px 12px;
+  }
+  .wobble-soft {
+    border-radius: 32px 8px 26px 10px / 10px 28px 8px 30px;
+  }
+
+  /* ------------------------------------------------------------ *
+   *  Washi tape
+   * ------------------------------------------------------------ */
+  .washi {
+    position: absolute;
+    pointer-events: none;
+    background-image:
+      repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.35) 0 5px,
+        rgba(255, 255, 255, 0) 5px 11px
+      ),
+      var(--tape-bg, linear-gradient(135deg, #f0c1c6, #e4a0a8));
+    box-shadow:
+      0 2px 5px -1px rgba(47, 40, 34, 0.35),
+      inset 0 0 12px rgba(255, 255, 255, 0.45);
+    opacity: 0.88;
+    mix-blend-mode: multiply;
+  }
+  /* nibbled tape ends */
+  .washi::before,
+  .washi::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background: inherit;
+    -webkit-mask-image: repeating-linear-gradient(
+      to bottom,
+      #000 0 3px,
+      transparent 3px 5px
+    );
+    mask-image: repeating-linear-gradient(to bottom, #000 0 3px, transparent 3px 5px);
+  }
+  .washi::before {
+    left: -5px;
+  }
+  .washi::after {
+    right: -5px;
+  }
+
+  /* ------------------------------------------------------------ *
+   *  Buttons that feel like thick pressed paper
+   * ------------------------------------------------------------ */
+  .paper-btn {
+    position: relative;
+    border: 2.5px solid var(--color-ink);
+    background: var(--btn-bg, #fffcf2);
+    box-shadow:
+      3px 3px 0 0 var(--color-ink),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transition:
+      transform 90ms ease,
+      box-shadow 90ms ease,
+      background 160ms ease;
+  }
+  .paper-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow:
+      4px 4px 0 0 var(--color-ink),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+  .paper-btn:active {
+    transform: translate(3px, 3px);
+    box-shadow:
+      0 0 0 0 var(--color-ink),
+      inset 2px 3px 6px rgba(47, 40, 34, 0.35);
+  }
+  .paper-btn:disabled {
+    opacity: 0.45;
+    transform: none;
+    box-shadow: 2px 2px 0 0 rgba(47, 40, 34, 0.4);
+    cursor: not-allowed;
+  }
+
+  /* ------------------------------------------------------------ *
+   *  Torn notebook paper (modal)
+   * ------------------------------------------------------------ */
+  .torn {
+    position: relative;
+    background: var(--card-bg, #fffcf2);
+  }
+  .torn::before,
+  .torn::after {
+    content: "";
+    position: absolute;
+    inset: auto; /* reset, in case .grain also targeted this pseudo element */
+    opacity: 1;
+    mix-blend-mode: normal;
+    border-radius: 0;
+    left: -1px;
+    right: -1px;
+    height: 16px;
+    background-color: inherit;
+    background-image: none;
+  }
+  .torn::before {
+    top: -15px;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 16' preserveAspectRatio='none'%3E%3Cpath d='M0,16 L0,9 L14,12 L27,5 L41,11 L56,4 L70,10 L84,3 L99,9 L113,4 L128,11 L142,5 L157,12 L171,6 L186,11 L200,3 L215,10 L229,5 L244,12 L258,6 L273,11 L287,4 L302,10 L316,5 L331,12 L345,6 L360,11 L374,4 L388,10 L400,6 L400,16 Z' fill='black'/%3E%3C/svg%3E")
+      no-repeat center/100% 100%;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 16' preserveAspectRatio='none'%3E%3Cpath d='M0,16 L0,9 L14,12 L27,5 L41,11 L56,4 L70,10 L84,3 L99,9 L113,4 L128,11 L142,5 L157,12 L171,6 L186,11 L200,3 L215,10 L229,5 L244,12 L258,6 L273,11 L287,4 L302,10 L316,5 L331,12 L345,6 L360,11 L374,4 L388,10 L400,6 L400,16 Z' fill='black'/%3E%3C/svg%3E")
+      no-repeat center/100% 100%;
+  }
+  .torn::after {
+    bottom: -15px;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 16' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L0,7 L15,4 L30,11 L44,5 L58,12 L73,6 L88,13 L102,7 L117,12 L131,5 L146,11 L160,4 L175,10 L189,5 L204,12 L218,6 L233,11 L247,4 L262,10 L276,5 L291,12 L305,6 L320,11 L334,4 L349,10 L363,5 L378,11 L392,6 L400,9 L400,0 Z' fill='black'/%3E%3C/svg%3E")
+      no-repeat center/100% 100%;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 16' preserveAspectRatio='none'%3E%3Cpath d='M0,0 L0,7 L15,4 L30,11 L44,5 L58,12 L73,6 L88,13 L102,7 L117,12 L131,5 L146,11 L160,4 L175,10 L189,5 L204,12 L218,6 L233,11 L247,4 L262,10 L276,5 L291,12 L305,6 L320,11 L334,4 L349,10 L363,5 L378,11 L392,6 L400,9 L400,0 Z' fill='black'/%3E%3C/svg%3E")
+      no-repeat center/100% 100%;
+  }
+
+  /* grain baked into the element's own background (for elements whose
+     ::after is already spoken for, e.g. the torn modal) */
+  .paper-noise {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+    background-size: 220px 220px;
+    background-repeat: repeat;
+    background-blend-mode: multiply;
+  }
+
+  /* ------------------------------------------------------------ *
+   *  Ink details
+   * ------------------------------------------------------------ */
+  .ink-box {
+    border: 2.5px solid var(--color-ink);
+    box-shadow: 3px 3px 0 0 rgba(47, 40, 34, 0.85);
+  }
+
+  .scribble-underline {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8' preserveAspectRatio='none'%3E%3Cpath d='M1,5 C20,1.5 38,7.5 59,4 C78,1 98,6.5 119,3' stroke='%23cf7a4e' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 7px;
+    padding-bottom: 7px;
+  }
+
+  /* "COMPLETED" rubber stamp */
+  .stamp {
+    border: 4px double currentColor;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    mix-blend-mode: multiply;
+    opacity: 0.82;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.28' numOctaves='3'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 -1.1 1.55'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.28' numOctaves='3'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0, 0 0 0 0 0, 0 0 0 0 0, 0 0 0 -1.1 1.55'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* hand-inked input line */
+  .ink-field {
+    background: transparent;
+    border: none;
+    border-bottom: 2.5px dotted rgba(106, 93, 78, 0.65);
+    padding: 4px 2px;
+    width: 100%;
+    color: var(--color-ink);
+  }
+  .ink-field::placeholder {
+    color: rgba(162, 145, 124, 0.85);
+  }
+  .ink-field:focus {
+    outline: none;
+    border-bottom-color: var(--color-clay);
+    border-bottom-style: solid;
+  }
+  /* a ruled textarea keeps its lines despite the transparent field bg */
+  .ink-field.ruled {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0 27px,
+      rgba(133, 174, 203, 0.38) 27px 28px
+    );
+  }
+
+  .shadow-lift {
+    box-shadow: var(--shadow-lift);
+  }
+}
+
+@layer utilities {
+  .writing-vertical {
+    writing-mode: vertical-rl;
+  }
+  .drag-none {
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+}
+
+/* gentle idle sway for pinned things */
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(var(--sway-a, -1deg));
+  }
+  50% {
+    transform: rotate(var(--sway-b, 1deg));
+  }
+}
+.sway {
+  animation: sway 7s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sway {
+    animation: none;
+  }
+  * {
+    scroll-behavior: auto;
+  }
+}

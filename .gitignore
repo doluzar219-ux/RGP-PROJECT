@@ -1,0 +1,114 @@
+# ─────────────────────────────────────────────────────────────
+#  Life RPG — .gitignore
+#  Rules are grouped and ordered from "always ignore" to
+#  "machine-specific". Keep the trailing comments: they answer
+#  the inevitable "why is this here?" during review.
+# ─────────────────────────────────────────────────────────────
+
+# ── Dependencies ─────────────────────────────────────────────
+node_modules/
+.pnp/
+.pnp.js
+.yarn/
+.yarn-integrity
+jspm_packages/
+package-lock.json.bak
+
+# ── Secrets & environment ────────────────────────────────────
+# Only `.env.example` files are committed; every real env file is local.
+# The bare patterns below are intentionally un-anchored so they match at
+# any depth (server/.env, apps/api/.env, …), not just the repo root.
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.json
+serviceAccountKey*.json
+
+# ── Build output ─────────────────────────────────────────────
+/dist
+/build
+/out
+/.vite
+/.cache
+/output
+*.tsbuildinfo
+next-env.d.ts
+
+# ── Test & coverage ──────────────────────────────────────────
+/coverage
+/.nyc_output
+*.lcov
+/test-results/
+/playwright-report/
+/playwright/.cache/
+blob-report/
+/playwright.config/.cache/
+# Playwright downloads browsers into node_modules, but a local
+# `PLAYWRIGHT_BROWSERS_PATH` would drop them at the repo root.
+/ms-playwright/
+
+# ── Logs ─────────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# ── Editors & IDEs ───────────────────────────────────────────
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+.idea/
+*.swp
+*.swo
+*.swn
+*.sublime-project
+*.sublime-workspace
+.history/
+.project
+.classpath
+.settings/
+
+# ── OS junk ──────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.bak
+*~
+.directory
+
+# ── Misc local artefacts ─────────────────────────────────────
+# Screenshots & scratch files produced while developing.
+*.local
+*.orig
+*.rej
+/.eslintcache
+/.tsbuildinfo
+/tmp
+/temp
+scratch/
+*.png.tmp
+# Generated design assets that are not source of truth.
+/public/vendor/
+
+# ── Never ignore these (safety net) ──────────────────────────
+!/.gitignore
+!/.env.example
+!/.github/**/*
