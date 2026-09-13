@@ -25,7 +25,7 @@
 
 <br />
 
-https://github.com/user-attachments/assets/da8b6688-37f0-4a93-bc36-5b1ba3693be4
+<video src="https://github.com/user-attachments/assets/da8b6688-37f0-4a93-bc36-5b1ba3693be4" autoplay loop muted playsinline width="100%"></video>
 
 > *"Bind a fresh journal. Your quests will follow you to any device."*
 
