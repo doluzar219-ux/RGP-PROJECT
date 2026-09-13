@@ -1,6 +1,8 @@
 <div align="center">
 
-<img src="./assets/preview.jpg" alt="Life RPG — The Everyday Quest Log" width="100%" />
+
+
+
 
 <br /><br />
 
