@@ -1,8 +1,6 @@
 <div align="center">
 
-<video src="./vedio/b_create_wedio_for_my_.mp4" width="100%" autoplay loop muted playsinline controls>
-  <img src="./assets/preview.jpg" alt="Life RPG — The Everyday Quest Log" width="100%" />
-</video>
+<img src="./assets/preview.jpg" alt="Life RPG — The Everyday Quest Log" width="100%" />
 
 <br /><br />
 
