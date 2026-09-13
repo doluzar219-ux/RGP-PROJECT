@@ -1,6 +1,6 @@
 
 
-https://github.com/user-attachments/assets/da8b6688-37f0-4a93-bc36-5b1ba3693be4
+
 
 
 
@@ -24,6 +24,8 @@ https://github.com/user-attachments/assets/da8b6688-37f0-4a93-bc36-5b1ba3693be4
 [![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/atlas)
 
 <br />
+
+https://github.com/user-attachments/assets/da8b6688-37f0-4a93-bc36-5b1ba3693be4
 
 > *"Bind a fresh journal. Your quests will follow you to any device."*
 
